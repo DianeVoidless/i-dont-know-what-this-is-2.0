@@ -1,0 +1,83 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int Count(int x) ///function that counts how many numbers there are in an integer
+{
+    int count = 0;
+    while(x)
+    {
+        x = x / 10;
+        count++;
+    }
+    return count;
+}
+
+int main()
+{
+    int data, i=0, copy,failure=0;
+    cout << " Please insert a number that does not exceed the limit of 999." << endl;
+    cout << " >";
+    cin >> data; 
+    while (data > 999 && failure <=3) {
+        cout << " Your number has exceeded the given parameters. Please try again." << endl;
+        cout << " >";
+        cin >> data;
+        failure++;   
+    }
+    if(failure==4)
+        cout << " You have exceeded the number of possible tries. Please withdraw your credit card.";
+    if (failure < 4) {
+        copy = data;
+        int v[100];
+        while (data)
+        {
+
+            if (i <= 3) {
+                v[++i] = data % 10;
+                data = data / 10;
+            }
+            else
+            {
+                v[++i] = data;
+                data = 0;
+            }
+        }
+        for (int j = 1; j <= Count(copy); j++)
+            cout << v[j] << "  ";
+        cout << '\n';
+        cout << '\n';
+        cout << '\n';
+        cout << '\n';
+        cout << "1 Ron * " << v[1] << " + " << "                    " << v[1] << '\n';
+
+
+
+        /********/
+        if (v[2] * 10 % 50 == 0)
+            cout << "50 Ron * " << (v[2] * 10 / 50) << " + " << "                    " << v[2] * 10 << '\n';
+        else
+            if (v[2] * 10 % 50 > 0 && v[2] > 5)
+                cout << "50 Ron * " << (v[2] * 10 / 50) << " + " << "10 Ron * " << (v[2] - 5) << " + " << "          " << v[2] * 10 << '\n';
+            else
+                /**if (v[2] * 10 / 50 == 0)**/
+                cout << "10 Ron * " << v[2] << " + " << "                    " << v[2] * 10 << '\n';
+        /********/
+
+
+
+        if (v[3] * 100 % 500 == 0)
+            cout << "500 Ron * " << (v[3] * 100 / 500) << " + " << "                    " << v[3] * 100 << '\n';
+        else if (v[3] * 100 % 500 > 0 && v[3] > 5)
+            cout << "500 Ron * " << (v[3] * 100 / 500) << " + " << "100 Ron * " << (v[3] - 5) << " + " << "          " << v[3] * 100 << '\n';
+        else
+            cout << "100 Ron * " << v[3] << " + " << "                    " << v[3] * 100 << '\n';
+        /********/
+
+    }
+
+
+
+   cout << '\n';
+   cout << '\n';
+}
